@@ -33,47 +33,47 @@ export default handleActions({
       enermy = '1';
     }
 
-    let enermyNum = checkArr[enermy].indexOf(bodys.el[Object.keys(bodys.el)].num)
+    // let enermyNum = checkArr[enermy].indexOf(bodys.el[Object.keys(bodys.el)].num)
 
-    let coverCheck = bingoCheck;
-    coverCheck[player].push(cell)
-    coverCheck[enermy].push(enermyNum + 1);
+    // let coverCheck = bingoCheck;
+    // coverCheck[player].push(cell)
+    // coverCheck[enermy].push(enermyNum + 1);
 
-    function _sort(arr) {
-      return arr.sort( (a, b) => {
-        return a - b;
-      })
-    }
+    // function _sort(arr) {
+    //   return arr.sort( (a, b) => {
+    //     return a - b;
+    //   })
+    // }
 
-    coverCheck[player] = _sort(coverCheck[player])
-    coverCheck[enermy] = _sort(coverCheck[enermy])
+    // coverCheck[player] = _sort(coverCheck[player])
+    // coverCheck[enermy] = _sort(coverCheck[enermy])
 
     cover.push(Number(bodys.el[Object.keys(bodys.el)].num));
 
-    function who_win() {
-      let count = 1;
-      let win = null;
-      let playerArr = ['1', '2'];
+    // function who_win() {
+    //   let count = 1;
+    //   let win = null;
+    //   let playerArr = ['1', '2'];
 
-      for(let i = 0; i < playerArr.length; i++) {
-        for(let l = 0; l < coverCheck[playerArr[i]].length; l++) {
-          if((coverCheck[playerArr[i]][l]) - 1 === coverCheck[playerArr[i]][l - 1]) {
-            count++;
+    //   for(let i = 0; i < playerArr.length; i++) {
+    //     for(let l = 0; l < coverCheck[playerArr[i]].length; l++) {
+    //       if((coverCheck[playerArr[i]][l]) - 1 === coverCheck[playerArr[i]][l - 1]) {
+    //         count++;
 
-          } else {
-            count = 1;
-          }
+    //       } else {
+    //         count = 1;
+    //       }
 
-          if(count >= 5) {
-            win = playerArr[i];
-          }
-        }
-      }
-      return win;
-    }
-    const winner = who_win();
+    //       if(count >= 5) {
+    //         win = playerArr[i];
+    //       }
+    //     }
+    //   }
+    //   return win;
+    // }
+    // const winner = who_win();
 
-    return { turn : !turn, useArr : cover, bingoCheck : coverCheck, winner : winner } 
+    return { turn : !turn, useArr : cover } 
   },
 
   [REPLAY] : () => {
