@@ -11,7 +11,21 @@ class StartContainer extends Component {
   componentDidMount() {
     const { StartActions } = this.props;
 
-    return StartActions.makeNullCell();
+    StartActions.makeNullCell();
+  }
+
+  componentDidUpdate() {
+    const { GameStageAction, StartActions, winner } = this.props;
+
+    if(winner !== null && winner !== undefined) {
+      alert(winner + ' 플레이어가 승리했습니다!');
+
+      StartActions.startToggle();
+
+      return setTimeout( () => {
+        GameStageAction.replay()
+      }, 0)
+    }
   }
 
   _gameStart = () => {
@@ -43,7 +57,7 @@ class StartContainer extends Component {
 
   render() {
     const { _gameStart, _replay } = this;
-    const { gaming, turn } = this.props;
+    const { gaming, turn, winner } = this.props;
 
     return (
       <Start
@@ -51,6 +65,7 @@ class StartContainer extends Component {
         replay={_replay}
         gaming={gaming}
         turn={turn}
+        winner={winner}
       />
     );
   }
@@ -61,6 +76,7 @@ export default connect(
     gaming: state.start.gaming,
     turn: state.gameStage.turn,
     replay: state.start.replay,
+    winner: state.gameStage.winner
   }), 
   (dispatch) => ({
     StartActions: bindActionCreators(startActions, dispatch),

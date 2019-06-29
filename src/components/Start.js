@@ -5,7 +5,8 @@ const Start = ({
   gaming,
   turn,
   gameStart,
-  replay
+  replay,
+  winner
 }) => {
   return (
     <Grid style={{ textAlign : 'center' }}>

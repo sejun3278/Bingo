@@ -71,23 +71,7 @@ export default handleActions({
           }
         }
       }
-
-      let num = 0;
-      let coverArr = fullArr.slice(0)
       
-      // for(let j = 0; j < coverArr.length; j++) {
-      //   for(let l = 0; l < coverArr[j].length; l++) {
-      //     if(l === num) {
-      //       console.log(coverArr[j][l])
-      //       rowArr.push(coverArr[j][l])
-      //     }
-      //   }
-
-      //   fullArr.push(rowArr);
-      //   rowArr = [];
-      //   num++;
-      // }
-      console.log(fullArr)
       return fullArr;
     }
     

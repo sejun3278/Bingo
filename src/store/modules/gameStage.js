@@ -38,9 +38,42 @@ export default handleActions({
     let coverCheck = bingoCheck;
     coverCheck[player].push(cell)
     coverCheck[enermy].push(enermyNum + 1);
+
+    function _sort(arr) {
+      return arr.sort( (a, b) => {
+        return a - b;
+      })
+    }
+
+    coverCheck[player] = _sort(coverCheck[player])
+    coverCheck[enermy] = _sort(coverCheck[enermy])
+
     cover.push(Number(bodys.el[Object.keys(bodys.el)].num));
 
-    return { turn : !turn, useArr : cover, bingoCheck : coverCheck } 
+    function who_win() {
+      let count = 1;
+      let win = null;
+      let playerArr = ['1', '2'];
+
+      for(let i = 0; i < playerArr.length; i++) {
+        for(let l = 0; l < coverCheck[playerArr[i]].length; l++) {
+          if((coverCheck[playerArr[i]][l]) - 1 === coverCheck[playerArr[i]][l - 1]) {
+            count++;
+
+          } else {
+            count = 1;
+          }
+
+          if(count >= 5) {
+            win = playerArr[i];
+          }
+        }
+      }
+      return win;
+    }
+    const winner = who_win();
+
+    return { turn : !turn, useArr : cover, bingoCheck : coverCheck, winner : winner } 
   },
 
   [REPLAY] : () => {
